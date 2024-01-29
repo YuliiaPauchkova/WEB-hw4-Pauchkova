@@ -51,6 +51,7 @@ def send_message_to_socket(username, message):
 def run_socket_server():
     try:
         with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as server_socket:
+            server_socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
             server_socket.bind((UDP_HOST, UDP_PORT))
             print('UDP сервер слухає на {}:{}'.format(UDP_HOST, UDP_PORT))
 
